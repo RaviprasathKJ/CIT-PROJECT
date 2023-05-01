@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logo.png">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login">
+            <img src="Ravi.jpg" alt="logo">
+            <h1>Login</h1>
+            <label for="email">Email</label>
+            <input type="text" id="userEmail" name="email">
+            <label for="password">Password</label>
+            <input type="password" pattern="" id="userPassword" name="password"/>
+            <button type="submit" id="signInButton">Login</button>
+            <div class="link">
+                <a  href="forgotPass.html">Forgot Password?</a>
+                <a id="signup" href="signup.html">Signup</a>
+            </div>  
+        </div>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+const firebaseConfig = {
+        apiKey: "AIzaSyBQPlQdX0tCFIu-q7Cpgb9ZnlHT0E5p3XA",
+        authDomain: "loginpage-98bdc.firebaseapp.com",
+        databaseURL: "https://loginpage-98bdc-default-rtdb.firebaseio.com",
+        projectId: "loginpage-98bdc",
+        storageBucket: "loginpage-98bdc.appspot.com",
+        messagingSenderId: "764710326795",
+        appId: "1:764710326795:web:15acb15e679c1e459eed0e",
+        measurementId: "G-QM345SZVH5"
+    };
+
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+const userEmail = document.getElementById("userEmail");
+const userPassword = document.getElementById("userPassword");
+const signInButton = document.getElementById("signInButton");
+const forgotPass=document.getElementById("forgotPass");
+
+const SignIn=async()=>{
+    const signInEmail=userEmail.value;
+    const signInPass=userPassword.value;
+    signInWithEmailAndPassword(auth,signInEmail,signInPass)
+    .then((userCredential)=>{
+        const user=userCredential.user;
+        let status=user.emailVerified;
+        if(status===true){
+        alert("logged in successfully");
+        window.location.href="main.html"}
+        else{
+            alert("please verify your email")
+        }
+})
+   .catch((error)=>{
+    const errorMessage=error.message;
+    alert(errorMessage);
+   })
+}
+
+
+
+signInButton.addEventListener('click', SignIn);
+    </script>
+</body>
+</html>

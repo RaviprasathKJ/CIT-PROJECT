@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reset password</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="forgotpass">
+        <h1>Reset Password</h1>
+        <label>Email</label>
+        <input type="email" id="userEmail"/>
+        <button id="forgotPass">Reset</button>
+    </div>
+    <script type="module">
+          import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+          import {
+                 getAuth,
+                 sendPasswordResetEmail
+                 } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+
+
+const firebaseConfig = {
+        apiKey: "AIzaSyBQPlQdX0tCFIu-q7Cpgb9ZnlHT0E5p3XA",
+        authDomain: "loginpage-98bdc.firebaseapp.com",
+        databaseURL: "https://loginpage-98bdc-default-rtdb.firebaseio.com",
+        projectId: "loginpage-98bdc",
+        storageBucket: "loginpage-98bdc.appspot.com",
+        messagingSenderId: "764710326795",
+        appId: "1:764710326795:web:15acb15e679c1e459eed0e",
+        measurementId: "G-QM345SZVH5"
+    };
+
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+const userEmail = document.getElementById("userEmail");
+const forgotPass=document.getElementById("forgotPass");
+
+const Change=async()=>{
+    const signInEmail=userEmail.value;
+    sendPasswordResetEmail(auth,signInEmail)
+    .then(()=>{
+        alert("Password reset link has been sent to your mail")
+    })
+    .catch((error)=>{
+        alert(error.message); 
+    })
+}
+forgotPass.addEventListener('click',Change);
+    </script>
+</body>
+</html>

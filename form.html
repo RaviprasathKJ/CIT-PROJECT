@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance</title>
+    <link rel="stylesheet" href="form.css">
+    <script src="index.js"></script>
+
+</head>
+<body>
+
+    <h1>Attendance</h1>
+    <div>
+        <label>Class:</label>
+        <input title="enter the name in lower case" required id="class" type="text" />
+        <label>Total Students:</label>
+        <input  required id="Total" type="number"/>
+        <label>Students Present:</label>
+        <input  required id="present" type="number"/>
+        <label>Abstenties name with reason</label>
+        <textarea required rows="4" cols="50"></textarea>
+        <label>Password</label>
+        <input onkeyup="checker()" required type="password" id="pass"/>
+        <button onclick="save()" disabled=true id="but">Send</button>
+    </div>
+    
+
+</body>
+</html

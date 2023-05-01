@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="icon" href="logo.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="signup">
+        <h1>Signup</h1>
+        <label >Email</label>
+        <input type="email" id="userEmail"/>
+        <label>password</label>
+        <input type="password" id="userPassword"/>
+        <button id="signUpButton">Signup</button>
+        <a href="login.html">Login</a>
+    </div>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    sendEmailVerification
+} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+const firebaseConfig = {
+        apiKey: "AIzaSyBQPlQdX0tCFIu-q7Cpgb9ZnlHT0E5p3XA",
+        authDomain: "loginpage-98bdc.firebaseapp.com",
+        databaseURL: "https://loginpage-98bdc-default-rtdb.firebaseio.com",
+        projectId: "loginpage-98bdc",
+        storageBucket: "loginpage-98bdc.appspot.com",
+        messagingSenderId: "764710326795",
+        appId: "1:764710326795:web:15acb15e679c1e459eed0e",
+        measurementId: "G-QM345SZVH5"
+    };
+
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+const userEmail = document.getElementById("userEmail");
+const userPassword = document.getElementById("userPassword");
+const signUpButton = document.getElementById("signUpButton");
+
+
+
+const SignUp = async() => {
+    const signUpEmail = userEmail.value;
+    const signUpPassword = userPassword.value;
+    createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword)
+    .then((userCredential) => {
+           sendEmailVerification(auth.currentUser)
+           .then(()=>{
+            alert("email verification sent")})
+        const user = userCredential.user;
+        console.log(user);
+        alert("Your account has been created!");
+    })
+    .catch((error) => {
+        const errorMessage = error.message;
+        console.log(errorMessage);
+        alert(errorMessage);
+    })
+}
+signUpButton.addEventListener('click', SignUp);
+    </script>
+</body>
+</html>

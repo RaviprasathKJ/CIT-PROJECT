@@ -1,0 +1,123 @@
+img{
+  height:50vh;}
+
+body{
+  background-color:bisque;
+}
+.login {
+    display: flex;
+    flex-direction: column;
+    background-color:rgba(255,255,255,0.5 ); /* set the background color with transparency */
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;   
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+.signup {
+    display: flex;
+    flex-direction: column;
+    background-color:rgba(255,255,255,0.5 ); /* set the background color with transparency */
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;   
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+ .signup a{
+  margin-top:2px;
+  text-align:center;
+  font-size:small;
+ }
+  
+  label {
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  input {
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  button {
+    background-color: #4285F4;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #3367D6;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  input{
+    background-color: transparent;
+    border:None;
+    border-bottom:2px solid black;
+  }
+  input:focus{
+    outline:None;
+  }
+
+  .link{
+    text-decoration:none;
+    display:flex;
+    flex-direction: row;
+    display:inline-block;
+    justify-content: space-between;
+    font-size:small;
+    color:black;
+    text-decoration: none;
+  }
+
+#signup{
+  float: right;
+}
+
+.forgotpass{
+  display: flex;
+    flex-direction: column;
+    background-color:rgba(255,255,255,0.5 ); /* set the background color with transparency */
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;   
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.forgotpass input{
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.forgotpass input:focus{
+  outline:none;
+}
+
+.forgotpass label{
+  font-weight: bold;
+    margin-top: 10px;
+  }

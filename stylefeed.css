@@ -1,0 +1,68 @@
+ body{
+    background-color: aliceblue;
+ }
+ 
+
+ 
+ #feedback-list{
+    border:3px solid black;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction:row;
+    background-color: grey;
+    z-index: 1;
+ }
+
+ #feedback-list div{
+   border: 3px solid orange;
+   border-radius: 5px;
+   margin: 50px 50px;
+   padding: 10px 10px;
+   background-color: white;
+   z-index:2;
+ }
+ 
+ form{
+    background-color:rgba(255,255,255,0.5 );
+    border: 2px solid black;
+    border-radius: 5px;;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    justify-content: center;
+    margin: 5px 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+ }
+
+ .feed{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+ }
+
+ textarea{
+    border-radius: 5px;
+    border: 2px solid black;
+ }
+
+ textarea:focus{
+    outline: none;
+
+  }
+ input{
+    margin:5px;
+    border-radius: 5px;
+ }
+  input:focus{
+    outline: none;
+  }
+
+  button:hover{
+   transform: scale(1.1);
+    border:2px;
+    background-color: black;
+    color:orange;
+  }

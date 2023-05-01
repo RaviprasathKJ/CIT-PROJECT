@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>feedback</title>
+     <link rel="stylesheet" href="stylefeed.css">
+</head>
+<body>
+  <div class="feed">
+  <h1>Give your Feedback</h1>
+<form id="form"> 
+    <label for="name-input">Name:</label>
+    <input required type="text" id="name-input">
+  
+    <label for="feedback-input">Feedback:</label>
+    <textarea required  id="feedback-input"></textarea>
+
+    <label for="rating">Rating:</label>
+    <input id="ratings" type="number" max="10">
+  
+    <button id="display" type="submit">Submit</button>
+</form>
+
+</div>
+<h1 id="rate">Average ratings :</h1>
+<div id="feedback-list">
+</div>
+
+
+<script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+        import { getDatabase, ref, push, set,onValue } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBQPlQdX0tCFIu-q7Cpgb9ZnlHT0E5p3XA",
+  authDomain: "loginpage-98bdc.firebaseapp.com",
+  databaseURL: "https://loginpage-98bdc-default-rtdb.firebaseio.com",
+  projectId: "loginpage-98bdc",
+  storageBucket: "loginpage-98bdc.appspot.com",
+  messagingSenderId: "764710326795",
+  appId: "1:764710326795:web:15acb15e679c1e459eed0e",
+  measurementId: "G-QM345SZVH5"
+};
+
+const app = initializeApp(firebaseConfig);
+const database=getDatabase(app);
+
+// Get a reference to the Realtime Database
+
+
+// Get a reference to the form element
+const form = document.querySelector("form");
+const button =document.getElementById("display");
+
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+
+  // Get the values from the form fields
+  const name = form.elements["name-input"].value;
+  const feedback = form.elements["feedback-input"].value;
+  const ratings = form.elements["ratings"].value;
+
+
+  // Add the data to the database
+  if(name!=""){
+  const feedbackRef = ref(database,"users");
+  const newFeedbackRef = push(feedbackRef);
+  set(newFeedbackRef, {
+    name: name,
+    feedback: feedback,
+    ratings :ratings,
+  });
+  console.log(name,feedback);
+
+  // Clear the form fields
+  form.reset();}
+  else{
+  alert("fill the values");
+}
+});
+
+function display(){
+// Get a reference to the "feedback" location in the database
+const feedbackRef = ref(database, "users");
+  
+// Get a reference to the div element to display the feedback
+const feedbackList = document.getElementById("feedback-list");
+const rate=document.getElementById("rate");
+// Listen for changes to the "feedback" location in the database
+onValue(feedbackRef, (snapshot) => {
+  // Get the data from the snapshot
+  const data = snapshot.val();
+
+  // Clear the previous feedback items
+  feedbackList.innerHTML = "";
+
+  // Loop through the data and display each feedback item in the div element
+  let count=0;
+  let sum=0;
+  for (const key in data) {
+    const feedback = data[key];
+    feedbackList.innerHTML += `
+      <div>
+        <h2>${feedback.name}</h2>
+        <p>${feedback.feedback}</p>
+        <p>${feedback.ratings}</p>
+      </div>
+    `;
+    sum+=parseInt(feedback.ratings);
+   console.log(sum);
+   count+=1;
+  }
+rate.innerHTML="Average ratings:";
+rate.innerHTML+=sum/count;
+});}
+
+display();
+
+</script>  
+</body>
+</html>
